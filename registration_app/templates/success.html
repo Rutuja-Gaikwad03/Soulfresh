@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registration Successful</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="page">
+  <div class="card">
+    <div class="success-banner">
+      <span class="check">&#10003;</span>
+      <div>
+        <h1>Registration Successful!</h1>
+        <p class="subtitle">Thank you, {{ reg.full_name }}. Your details have been recorded.</p>
+      </div>
+    </div>
+
+    <div class="preview-grid">
+      <div class="preview-photo">
+        <img src="{{ url_for('serve_photo', filename=reg.photo_filename) }}" alt="Profile Photo">
+      </div>
+
+      <div class="preview-details">
+        <div class="detail"><span>Full Name</span><strong>{{ reg.full_name }}</strong></div>
+        <div class="detail"><span>Mobile Number</span><strong>{{ reg.mobile_number }}</strong></div>
+        <div class="detail"><span>Email</span><strong>{{ reg.email }}</strong></div>
+        <div class="detail"><span>Address</span><strong>{{ reg.address }}</strong></div>
+        <div class="detail"><span>City</span><strong>{{ reg.city }}</strong></div>
+        <div class="detail"><span>State</span><strong>{{ reg.state }}</strong></div>
+        <div class="detail"><span>PIN Code</span><strong>{{ reg.pin_code }}</strong></div>
+        <div class="detail"><span>Gender</span><strong>{{ reg.gender }}</strong></div>
+        <div class="detail"><span>Date of Birth</span><strong>{{ reg.dob }}</strong></div>
+        <div class="detail"><span>Education</span><strong>{{ reg.education }}</strong></div>
+        <div class="detail"><span>Position Applied For</span><strong>{{ reg.position_applied }}</strong></div>
+        <div class="detail"><span>Skills</span><strong>{{ reg.skills }}</strong></div>
+        <div class="detail"><span>Experience</span><strong>{{ reg.experience or 'N/A' }}</strong></div>
+        <div class="detail">
+          <span>Resume</span>
+          <strong><a href="{{ url_for('serve_resume', filename=reg.resume_filename) }}" target="_blank">View PDF</a></strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <a class="btn-whatsapp" id="whatsappBtn" target="_blank"
+         href="https://wa.me/{{ whatsapp_number }}?text={{ whatsapp_text | urlencode }}">
+         Send via WhatsApp
+      </a>
+      <a class="btn-secondary" href="{{ url_for('edit_form', reg_id=reg.id) }}">Edit Details</a>
+      <a class="btn-primary" href="{{ url_for('register_form') }}">Back to Home</a>
+    </div>
+    <p class="whatsapp-note" id="whatsappNote">
+      Opening WhatsApp with your details automatically&hellip; if nothing opens,
+      your browser blocked the pop-up &mdash; click <strong>Send via WhatsApp</strong> above.
+    </p>
+  </div>
+</div>
+
+<script>
+  // whtsp
+  window.addEventListener("load", function () {
+    var btn = document.getElementById("whatsappBtn");
+    if (btn) {
+      window.open(btn.href, "_blank");
+    }
+  });
+</script>
+</body>
+</html>
