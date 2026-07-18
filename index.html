@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ 'Edit Registration' if edit_id else 'Registration Form' }}</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<title>Registration Form</title>
+<link rel="stylesheet" href="registration_app/static/css/style.css">
 </head>
 <body>
 <div class="page">
   <div class="card">
-    <h1>{{ 'Edit Registration' if edit_id else 'Candidate Registration Form' }}</h1>
+    <h1>Candidate Registration Form</h1>
     <p class="subtitle">Please fill in all details accurately.</p>
 
     {% with messages = get_flashed_messages(with_categories=true) %}
